@@ -1,19 +1,20 @@
-from typing import List
-
-from aiogram import types
+from aiogram.utils.keyboard import ReplyKeyboardBuilder, InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from aiogram.utils.keyboard import InlineKeyboardBuilder
+from filters import *
 
-from .filters import *
 
-set_default_commands: List[types.BotCommand] = [
-    types.BotCommand(command="start", description="Запустить бота"),
-    types.BotCommand(
-        command="reg", description="Получить права руководителя (При наличие пароля)"),
-    types.BotCommand(command="newcamera", description="Добавить новую камеру"),
-    types.BotCommand(command="mycamera",
-                     description="Отредактируйте своу камеру")
-]
+def set_reg_keyboard():
+    reg_markup = ReplyKeyboardBuilder()
+    reg_markup.button(text='Зарегистрироваться')
+    reg_markup.adjust(2, repeat=True)
+    return reg_markup.as_markup()
+
+
+def set_camera_keyboard():
+    camera_markup = ReplyKeyboardBuilder()
+    camera_markup.button(text='Добавить камеру').button(text='Мои камеры')
+    camera_markup.adjust(2, repeat=True)
+    return camera_markup.as_markup()
 
 
 def set_mycamera_buttons(mycameras) -> InlineKeyboardMarkup:

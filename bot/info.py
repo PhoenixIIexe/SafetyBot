@@ -1,0 +1,5 @@
+TOKEN = '6285913527:AAGqR_gDA7plNPVm2DoTtrs5d8A721xdkZE'
+
+BOSS_ID = 1476987094
+
+RIGHTS_CODE = 'The best university'

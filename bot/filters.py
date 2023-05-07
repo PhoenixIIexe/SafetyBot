@@ -1,16 +1,15 @@
+from typing import Any
 from aiogram import types
-from aiogram.filters import Filter
+import data
 from aiogram.filters.callback_data import CallbackData
 
-from data import models
-
-
-class IsAdmin(Filter):
+class IsAdmin:
     def __init__(self) -> None:
         ...
 
     async def __call__(self, message: types.Message) -> bool:
-        return models.session.query(models.User).filter_by(tg_id=message.from_user.id).first()
+        user = data.session.query(data.SBdata).filter_by(user_id=message.from_user.id).first()
+        return user is not None
 
 
 class MyCamera(CallbackData, prefix='my_camera'):
